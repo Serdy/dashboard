@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<pre>
+   {{ dockers.decode('utf-8') }}
+ </pre>  
+ <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a href="/docker?docker_id={{ docker_id }}&docker_host={{ docker_host }}&intro">Back</a></li>
+    </ul>
+  </div>
+</nav> 
+{% endblock %}  

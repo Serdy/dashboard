@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<body>
+<title>Hello from Flask</title>
+<p><a href="{{ url_for('.login') }}">log in</a></p>
+{% if name %}
+
+{% for key in name %}
+ {% for x in key["files"] %}
+  <h1>Hello {{ x }}!</h1>
+  {% endfor %}
+
+{% endfor %}
+{% else %}
+  <h1>Hello World!</h1>
+{% endif %}
+{% for key, value in name.items() %}
+      {% if key == "folder" %}
+      {% for x in value %}
+      <h2><a href="{{ url_for('.hello') }}?folder={{ x }}">{{ x }}</a></h2>
+      {% endfor %}
+      {% elif key == "files" %}
+<form>
+      {% for x in value %}
+  <input type="checkbox" name="vehicle1" value="Bike">{{ x }}<br>
+  
+      {% endfor %}
+</form>
+      {% endif %}
+      {% endfor %}
+{% if request.args.get('folder') != None %}      
+<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
+{% endif %}
+ <form action="/uploader" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Загрузить</button>
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>USER</th>
+        <th>PID</th>
+        <th>CPU</th>
+        <th>MEM</th>
+        <th>VSZ</th>
+        <th>RSS</th>
+        <th>TTY</th>
+        <th>STAT</th>
+        <th>START</th>
+        <th>TIME</th>
+        <th>COMMAND</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for process in dockers['Processes'] %}
+      <tr>
+      {% for data in process %}
+        <td>{{data}}</td>
+       {% endfor %}
+      </tr>
+     {% endfor %} 
+    </tbody>
+  </table>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a href="/docker?docker_id={{ docker_id }}&docker_host={{ docker_host }}&intro">Back</a></li>
+    </ul>
+  </div>
+</nav> 
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %}Docker{% endblock %}
+{% block content %}
+
+ <div class="row">
+   <div class="col-md-5  col-md-offset-1">
+      <form action="" class="search-form">
+        <div class="form-group has-feedback">
+           <label for="search" class="sr-only">Search</label>
+           <input type="text" class="form-control" name="search" id="search" placeholder="search">
+           <span class="glyphicon glyphicon-search form-control-feedback"></span>
+         </div>
+       </form>
+     </div>
+   </div>
+<table class="table">
+  <tbody>
+    <tr class="titre">
+      <th>Name</th>
+      <th>Status</th>
+      <th>Id</th>
+      <th>IpAddress</th>
+    </tr>
+{% set Docker_host = 'start' %}
+{% for docker in dockers %}
+{% if docker['Docker_host_ip'] != Docker_host %}
+    <tr class="info">
+      <td colspan="4">{{ docker['Docker_host_ip'] }}</td>
+    </tr>
+{% set Docker_host = docker['Docker_host_ip'] %}
+{% endif %}
+{% if docker['Status'][:2] == "Up" %}
+    <tr class="success">
+      <td><a href="/docker?docker_id={{ docker['Id'] }}&docker_host={{ docker['Docker_host_ip'] }}&intro">{{ docker['Name'] }}</a></td>
+      <td>{{ docker['Status'] }}</td>
+      <td>{{ docker['Id'] }}</td> 
+      <td>{{ docker['ip'] }}</td> 
+    </tr>
+{% else %}
+    <tr class="danger">
+      <td><a href="/docker?docker_name={{ docker['Name'] }}">{{ docker['Name'] }}</a></td>
+      <td>{{ docker['Status'] }}</td>
+      <td>{{ docker['Id'] }}</td> 
+      <td>{{ docker['ip'] }}</td> 
+    </tr>
+{% endif %}    
+{% endfor %}
+ </tbody>
+ </table>
+{% endblock %}
+

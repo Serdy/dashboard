@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+   <table class="table">
+  <tr>
+    <th>Name</th>
+    <td>{{ docker['Name'] }}</td>
+  </tr>
+  <tr>
+    <th>Status</th>
+    <td>{{ docker['Status'] }}</td>
+  </tr>
+  <tr>
+    <th>Id</th>
+    <td>{{ docker['Id'] }}</td>
+  </tr>
+  <tr>
+    <th>Image</th>
+    <td>{{ docker['Image'] }}</td>
+  </tr>
+  <tr>
+    <th>Hostname</th>
+    <td>{{ docker['Hostname'] }}</td>
+  </tr>
+  <tr>
+    <th>Entrypoint</th>
+    <td>{{ docker['Entrypoint'] }}</td>
+  </tr>
+  <tr>
+    <th>IP Address</th>
+    <td>{{ docker['ip'] }}</td>
+  </tr>
+  <tr>
+    <th>Gateway</th>
+    <td>{{ docker['Docker_host_ip'] }}</td>
+  </tr>
+  {% if docker['Mount']  %}
+  <tr>
+    <th>Mount</th>
+    <td>{{ docker['Mount'] }}</td>
+  </tr>
+  {% endif %}
+  <tr>
+    <th>Connect command</th>
+    <td><pre>docker -H tcp://{{ docker['Docker_host_ip'] }}:2375 exec -it {{ docker['Id'] }} bash</pre></td>
+  </tr>
+</table>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a href="/docker">Docker</a></li>
+      <li><a href="/docker?docker_id={{ docker['Id'] }}&docker_host={{ docker['Docker_host_ip'] }}&docker_log">Logs</a></li>
+      <li><a href="/docker?docker_id={{ docker['Id'] }}&docker_host={{ docker['Docker_host_ip'] }}&docker_top">Top</a></li>
+    </ul>
+  </div>
+</nav> 
+{% endblock %}  

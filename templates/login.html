@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/static/css/login_style.css" type="text/css">
+
+{% block body %}
+{% if session['logged_in'] %}
+<p>You're logged in already!</p>
+{% else %}
+ 
+ 
+<form action="/login" method="POST">
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Login</h1>
+            </div>
+            <div class="col-sm-4 social-a   s">
+                <a href="/login_github" class="btn btn-block btn-social btn-github">
+                    <i class="fa fa-github"></i>
+                    <div class="github-text">Sign in with GitHub</div>                    
+                </a>
+           </div>
+		</div>
+	</div>
+</form>
+ 
+{% endif %}
+{% endblock %}
