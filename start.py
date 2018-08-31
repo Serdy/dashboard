@@ -124,7 +124,7 @@ def user():
 
 @app.route('/')
 def index():
-	return redirect(url_for('docker'))
+	return redirect(url_for('aws'))
 
 
 @app.route('/docker', methods=["POST", "GET"])
